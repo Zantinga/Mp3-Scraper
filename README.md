@@ -5,4 +5,4 @@ A simple mp3 scraper for downloading audiobooks from manyaudiobooks.net
 `dotnet publish -c Release -r win-x64 --self-contained false`
 
 ## To Run:
-Mp3Scraper.exe https://example.com/page-with-audio
+`Mp3Scraper.exe https://example.com/page-with-audio`
