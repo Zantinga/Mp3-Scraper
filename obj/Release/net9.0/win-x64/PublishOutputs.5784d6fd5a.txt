@@ -1,0 +1,6 @@
+C:\Users\jzantinga\Mp3Scraper\bin\Release\net9.0\win-x64\publish\Mp3Scraper.exe
+C:\Users\jzantinga\Mp3Scraper\bin\Release\net9.0\win-x64\publish\Mp3Scraper.dll
+C:\Users\jzantinga\Mp3Scraper\bin\Release\net9.0\win-x64\publish\Mp3Scraper.deps.json
+C:\Users\jzantinga\Mp3Scraper\bin\Release\net9.0\win-x64\publish\Mp3Scraper.runtimeconfig.json
+C:\Users\jzantinga\Mp3Scraper\bin\Release\net9.0\win-x64\publish\Mp3Scraper.pdb
+C:\Users\jzantinga\Mp3Scraper\bin\Release\net9.0\win-x64\publish\HtmlAgilityPack.dll

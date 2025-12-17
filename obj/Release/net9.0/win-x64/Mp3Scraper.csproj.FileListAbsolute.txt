@@ -1,0 +1,17 @@
+C:\Users\jzantinga\Mp3Scraper\bin\Release\net9.0\win-x64\Mp3Scraper.exe
+C:\Users\jzantinga\Mp3Scraper\bin\Release\net9.0\win-x64\Mp3Scraper.deps.json
+C:\Users\jzantinga\Mp3Scraper\bin\Release\net9.0\win-x64\Mp3Scraper.runtimeconfig.json
+C:\Users\jzantinga\Mp3Scraper\bin\Release\net9.0\win-x64\Mp3Scraper.dll
+C:\Users\jzantinga\Mp3Scraper\bin\Release\net9.0\win-x64\Mp3Scraper.pdb
+C:\Users\jzantinga\Mp3Scraper\bin\Release\net9.0\win-x64\HtmlAgilityPack.dll
+C:\Users\jzantinga\Mp3Scraper\obj\Release\net9.0\win-x64\Mp3Scraper.csproj.AssemblyReference.cache
+C:\Users\jzantinga\Mp3Scraper\obj\Release\net9.0\win-x64\Mp3Scraper.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jzantinga\Mp3Scraper\obj\Release\net9.0\win-x64\Mp3Scraper.AssemblyInfoInputs.cache
+C:\Users\jzantinga\Mp3Scraper\obj\Release\net9.0\win-x64\Mp3Scraper.AssemblyInfo.cs
+C:\Users\jzantinga\Mp3Scraper\obj\Release\net9.0\win-x64\Mp3Scraper.csproj.CoreCompileInputs.cache
+C:\Users\jzantinga\Mp3Scraper\obj\Release\net9.0\win-x64\Mp3Scraper.csproj.Up2Date
+C:\Users\jzantinga\Mp3Scraper\obj\Release\net9.0\win-x64\Mp3Scraper.dll
+C:\Users\jzantinga\Mp3Scraper\obj\Release\net9.0\win-x64\refint\Mp3Scraper.dll
+C:\Users\jzantinga\Mp3Scraper\obj\Release\net9.0\win-x64\Mp3Scraper.pdb
+C:\Users\jzantinga\Mp3Scraper\obj\Release\net9.0\win-x64\Mp3Scraper.genruntimeconfig.cache
+C:\Users\jzantinga\Mp3Scraper\obj\Release\net9.0\win-x64\ref\Mp3Scraper.dll
