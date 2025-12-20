@@ -1,11 +1,7 @@
 ﻿using HtmlAgilityPack;
 using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Windows;
 
 
@@ -14,6 +10,9 @@ namespace Mp3ScraperWpf
     public partial class MainWindow : Window
     {
         private DateTime _startTime;
+        private CancellationTokenSource? _cts;
+        private bool _isDownloading;
+        private long _totalBytesDownloaded;
 
 
         public MainWindow()
@@ -30,12 +29,23 @@ namespace Mp3ScraperWpf
                 FolderBox.Text = dialog.FolderName;
         }
 
+        private async void ActionButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (_isDownloading)
+            {
+                _cts?.Cancel();
+                return;
+            }
 
-        private async void Download_Click(object sender, RoutedEventArgs e)
+            await StartDownloadAsync();
+        }
+
+
+
+        private async Task StartDownloadAsync()
         {
             LogBox.Items.Clear();
             Progress.Value = 0;
-
 
             if (!Uri.TryCreate(UrlBox.Text, UriKind.Absolute, out var pageUri))
             {
@@ -43,62 +53,86 @@ namespace Mp3ScraperWpf
                 return;
             }
 
-
             Directory.CreateDirectory(FolderBox.Text);
+
+            _isDownloading = true;
+            ActionButton.Content = "Cancel";
+            ActionButton.Background = (System.Windows.Media.Brush)
+                FindResource("AccentBrush");
+
+            _cts = new CancellationTokenSource();
+            var token = _cts.Token;
+
+            _totalBytesDownloaded = 0;
             _startTime = DateTime.Now;
 
-
-            using var http = new HttpClient();
-            http.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0");
-
-
-            StatusText.Text = "Downloading page...";
-            var html = await http.GetStringAsync(pageUri);
-
-
-            var doc = new HtmlDocument();
-            doc.LoadHtml(html);
-
-
-            var mp3Links = doc.DocumentNode
-            .SelectNodes("//*[@src or @href]")
-            ?.Select(n => n.GetAttributeValue("src", null) ?? n.GetAttributeValue("href", null))
-            .Where(u => !string.IsNullOrWhiteSpace(u))
-            .Select(u => new Uri(pageUri, u))
-            .Where(u => u.Host.Contains("ipaudio6.com", StringComparison.OrdinalIgnoreCase)
-            && u.AbsolutePath.EndsWith(".mp3", StringComparison.OrdinalIgnoreCase))
-            .Distinct()
-            .ToList();
-
-
-            if (mp3Links == null || mp3Links.Count == 0)
+            try
             {
-                StatusText.Text = "No MP3s found.";
-                return;
+                using var http = new HttpClient();
+                http.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0");
+
+                StatusText.Text = "Downloading page...";
+                var html = await http.GetStringAsync(pageUri);
+
+                var doc = new HtmlDocument();
+                doc.LoadHtml(html);
+
+                var mp3Links = doc.DocumentNode
+                    .SelectNodes("//*[@src or @href]")
+                    ?.Select(n => n.GetAttributeValue("src", null) ?? n.GetAttributeValue("href", null))
+                    .Where(u => !string.IsNullOrWhiteSpace(u))
+                    .Select(u => new Uri(pageUri, u))
+                    .Where(u => u.Host.Contains("ipaudio6.com", StringComparison.OrdinalIgnoreCase)
+                             && u.AbsolutePath.EndsWith(".mp3", StringComparison.OrdinalIgnoreCase))
+                    .Distinct()
+                    .ToList();
+
+                if (mp3Links == null || mp3Links.Count == 0)
+                {
+                    StatusText.Text = "No MP3s found.";
+                    return;
+                }
+
+                Progress.Maximum = mp3Links.Count;
+
+                for (int i = 0; i < mp3Links.Count; i++)
+                {
+                    token.ThrowIfCancellationRequested();
+
+                    var mp3 = mp3Links[i];
+                    var fileName = Path.GetFileName(mp3.LocalPath);
+
+                    StatusText.Text = $"Downloading {fileName}";
+
+                    var data = await http.GetByteArrayAsync(mp3, token);
+                    await File.WriteAllBytesAsync(
+                        Path.Combine(FolderBox.Text, fileName), data);
+
+                    _totalBytesDownloaded += data.Length;
+
+                    LogBox.Items.Add($"Completed {fileName}");
+
+                    Progress.Value = i + 1;
+                    UpdateEta(i + 1, mp3Links.Count);
+                }
+
+
+                StatusText.Text = "Done.";
             }
-
-
-            Progress.Maximum = mp3Links.Count;
-
-
-            for (int i = 0; i < mp3Links.Count; i++)
+            catch (OperationCanceledException)
             {
-                var mp3 = mp3Links[i];
-                var fileName = Path.GetFileName(mp3.LocalPath);
-                LogBox.Items.Add($"Downloading {fileName}");
-
-
-                var data = await http.GetByteArrayAsync(mp3);
-                await File.WriteAllBytesAsync(Path.Combine(FolderBox.Text, fileName), data);
-
-
-                Progress.Value = i + 1;
-                UpdateEta(i + 1, mp3Links.Count);
+                StatusText.Text = "Download cancelled.";
+                LogBox.Items.Add("Cancelled by user.");
             }
-
-
-            StatusText.Text = "Done.";
+            finally
+            {
+                _isDownloading = false;
+                ActionButton.Content = "Download";
+                _cts?.Dispose();
+                _cts = null;
+            }
         }
+
 
 
         private void UpdateEta(int completed, int total)

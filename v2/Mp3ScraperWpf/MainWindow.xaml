@@ -17,7 +17,11 @@ Foreground="{StaticResource FgBrush}">
 
         <StackPanel Orientation="Horizontal" Grid.Row="0">
             <TextBox x:Name="UrlBox" Width="480" Margin="0,0,5,0" />
-            <Button Content="Download" Width="120" Click="Download_Click" />
+            <Button x:Name="ActionButton"
+                Content="Download"
+                Width="120"
+                Click="ActionButton_Click" />
+
         </StackPanel>
 
 
