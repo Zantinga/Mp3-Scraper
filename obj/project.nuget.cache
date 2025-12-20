@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "PQtY7We0QWQ=",
+  "dgSpecHash": "zUrE+IshQ30=",
   "success": true,
-  "projectFilePath": "C:\\Users\\jzantinga\\Mp3Scraper\\Mp3Scraper.csproj",
+  "projectFilePath": "D:\\dev\\Mp3-Scraper\\Mp3Scraper.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\jzantinga\\.nuget\\packages\\htmlagilitypack\\1.12.4\\htmlagilitypack.1.12.4.nupkg.sha512"
+    "C:\\Users\\janza\\.nuget\\packages\\htmlagilitypack\\1.12.4\\htmlagilitypack.1.12.4.nupkg.sha512"
   ],
   "logs": []
 }

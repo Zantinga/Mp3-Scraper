@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jzantinga\\Mp3Scraper\\Mp3Scraper.csproj": {}
+    "D:\\dev\\Mp3-Scraper\\Mp3Scraper.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jzantinga\\Mp3Scraper\\Mp3Scraper.csproj": {
+    "D:\\dev\\Mp3-Scraper\\Mp3Scraper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jzantinga\\Mp3Scraper\\Mp3Scraper.csproj",
+        "projectUniqueName": "D:\\dev\\Mp3-Scraper\\Mp3Scraper.csproj",
         "projectName": "Mp3Scraper",
-        "projectPath": "C:\\Users\\jzantinga\\Mp3Scraper\\Mp3Scraper.csproj",
-        "packagesPath": "C:\\Users\\jzantinga\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jzantinga\\Mp3Scraper\\obj\\",
+        "projectPath": "D:\\dev\\Mp3-Scraper\\Mp3Scraper.csproj",
+        "packagesPath": "C:\\Users\\janza\\.nuget\\packages\\",
+        "outputPath": "D:\\dev\\Mp3-Scraper\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\jzantinga\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\janza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -66,11 +72,6 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308/PortableRuntimeIdentifierGraph.json"
-        }
-      },
-      "runtimes": {
-        "win-x64": {
-          "#import": []
         }
       }
     }
